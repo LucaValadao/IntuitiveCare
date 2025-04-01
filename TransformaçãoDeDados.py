@@ -12,18 +12,12 @@ def extrair_tabela_para_csv(pdf_path, csv_path):
     try:
         with pdfplumber.open(pdf_path) as pdf:
             tabelas = []
-            i = 0
             # Percorre todas as páginas do PDF e extrai as tabelas
             for pagina in pdf.pages:
-                i += 1
                 tabela = pagina.extract_table()  # Tenta extrair uma tabela da página
-                if i < 7:
-                    if tabela:
-                        print(i)
-                        tabelas.extend(tabela)  # Adiciona os dados extraídos à lista
+                if tabela:
+                    tabelas.extend(tabela)  # Adiciona os dados extraídos à lista
 
-                else:
-                    break # tirar depois que remover if i
 
             if tabelas:
                 df = pd.DataFrame(tabelas[1:], columns=tabelas[0])  
