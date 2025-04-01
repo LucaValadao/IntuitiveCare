@@ -18,12 +18,10 @@ def compactar_rar(arquivos, nome_saida):
     subprocess.run(comando, shell=True)
     print("RAR criado")
 
-# arquivos PDF baixados
 
 def main():
     arquivos_pdf = [r"C:\Users\Usuário\OneDrive\Documentos\Anexo1.pdf", r"C:\Users\Usuário\OneDrive\Documentos\Anexo2.pdf"] 
 
-    # Compactando zip e rar
     compactar_zip(arquivos_pdf, r"C:\Users\Usuário\OneDrive\Documentos\arquivos.zip")
     compactar_rar(arquivos_pdf, r"C:\Users\Usuário\OneDrive\Documentos\arquivos.rar")
 
