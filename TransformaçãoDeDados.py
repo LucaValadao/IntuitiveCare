@@ -12,11 +12,10 @@ def extrair_tabela_para_csv(pdf_path, csv_path):
     try:
         with pdfplumber.open(pdf_path) as pdf:
             tabelas = []
-            # Percorre todas as páginas do PDF e extrai as tabelas
             for pagina in pdf.pages:
-                tabela = pagina.extract_table()  # Tenta extrair uma tabela da página
+                tabela = pagina.extract_table() 
                 if tabela:
-                    tabelas.extend(tabela)  # Adiciona os dados extraídos à lista
+                    tabelas.extend(tabela)
 
 
             if tabelas:
@@ -31,29 +30,26 @@ def extrair_tabela_para_csv(pdf_path, csv_path):
                 print("Erro")
 
     except Exception as e:
-        print(f"Erro ao processar o PDF: {e}")
+        print("Erro ao processar PDF")
 
 def compactar_csv_em_zip(csv_path):
-    """Compacta o arquivo CSV em um arquivo ZIP com o nome 'Teste_{Luca}.zip'."""
-    # Definir o nome do arquivo ZIP
     nome_zip = "Teste_{Luca}.zip"
     
-    # Cria o arquivo ZIP e adiciona o CSV
     try:
         with zipfile.ZipFile(nome_zip, 'w', zipfile.ZIP_DEFLATED) as arquivoZip:
-            arquivoZip.write(csv_path, os.path.basename(csv_path))  # Adiciona o CSV ao ZIP com o nome original
+            arquivoZip.write(csv_path, os.path.basename(csv_path))  
         print(f"Sucess")
     except Exception as e:
         print(f"Erro2")
 
-# Função principal para executar o código
+
 def main():
-    print('oi')
-    # Defina o caminho do seu PDF e onde deseja salvar o CSV
-    pdf_path = r"C:\Users\Usuário\OneDrive\Documentos\Anexo1.pdf"  # Substitua pelo caminho do seu PDF
-    csv_path = r"C:\Users\Usuário\OneDrive\Documentos\tabela.csv"  # Caminho de destino para o arquivo CSV
+    print('Funcionando')
     
-    # Chama a função para extrair todas as tabelas e salvar como CSV
+    pdf_path = r"C:\Users\Usuário\OneDrive\Documentos\Anexo1.pdf"  
+    csv_path = r"C:\Users\Usuário\OneDrive\Documentos\tabela.csv"  
+    
+
     extrair_tabela_para_csv(pdf_path, csv_path)
 
 
